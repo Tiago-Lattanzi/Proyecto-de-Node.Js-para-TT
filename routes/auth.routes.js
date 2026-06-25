@@ -1,10 +1,9 @@
 import express from 'express';
+import { login } from '../controllers/auth.controller.js';
 
 const router = express.Router();
 
-// Ruta de prueba temporal para Auth
-router.get('/', (req, res) => {
-    res.json({ message: "Ruta de autenticación lista" });
-});
+// POST /auth/login - Recibe credenciales y devuelve el Bearer token
+router.post('/login', login);
 
 export default router;
