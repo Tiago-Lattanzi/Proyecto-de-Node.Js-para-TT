@@ -14,7 +14,7 @@ export const verifyToken = (req, res, next) => {
     }
 
     try {
-        // Verifica que el token sea válido usando tu secreto del .env
+        // Verifica que el token sea válido usando el secreto del .env
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded; 
         next(); // Token válido, le da permiso para continuar

@@ -1,45 +1,100 @@
-Proyecto de Node.Js para Talento Tech
+🚀 API REST E-commerce - Proyecto Final Node.js
 
-Este proyecto es una herramienta de línea de comandos (CLI) construida con Node.js que permite gestionar productos de una tienda virtual consumiendo la API de FakeStore.
+Este repositorio contiene el código fuente de una API RESTful completa y segura desarrollada con Node.js y Express, utilizando Firebase (Firestore) como base de datos NoSQL en la nube. El proyecto incluye un sistema de autenticación basado en JSON Web Tokens (JWT) para proteger las rutas críticas.
 
-🚀 Requerimientos cumplidos
+Desarrollado para el bootcamp de Talento Tech (TT).
 
-Configuración Profesional: Uso de ESModules ("type": "module") y scripts personalizados en package.json.
+🛠️ Tecnologías y Herramientas
 
-Interacción Asíncrona: Implementación de fetch para operaciones GET, POST y DELETE.
+* Entorno de Ejecución: Node.js
 
-Lógica Dinámica: Procesamiento de argumentos de terminal mediante process.argv.
+* Framework Web: Express.js
 
-Formateo de Datos: Visualización profesional en consola mediante console.table.
+* Base de Datos: Firebase Firestore (NoSQL)
 
-🛠️ Instalación y Uso
+* Seguridad: JWT (JsonWebToken) para autenticación, CORS.
 
-Clona este repositorio.
+* Arquitectura: Diseño en capas (Rutas, Controladores, Servicios y Modelos).
 
-Asegúrate de tener Node.js (v18 o superior recomendado).
+🏗️ Arquitectura del Proyecto
 
-Ejecuta el comando de inicio según lo que necesites:
+El proyecto está estructurado utilizando un patrón de diseño en capas para garantizar un código limpio, mantenible y escalable:
 
-Consultar todos los productos
+* 📂 config/: Configuración de la conexión a la base de datos (Firebase).
 
-npm run start GET products
+* 📂 routes/: Definición de los endpoints de la API web.
+
+* 📂 middlewares/: Filtros de seguridad (verificación de tokens JWT).
+
+* 📂 controllers/: Manejo de las peticiones HTTP (req, res) y códigos de estado.
+
+* 📂 services/: Lógica de negocio y validaciones.
+
+* 📂 models/: Interacción directa con la base de datos Firestore.
+
+⚙️ Instalación y Configuración Local
+
+Para correr este proyecto en tu propia máquina, sigue estos pasos:
+
+1. Clonar el repositorio:
+
+git clone https://github.com/Tiago-Lattanzi/Proyecto-de-Node.Js-para-TT.git
+cd Proyecto-de-Node.Js-para-TT
 
 
-Consultar un producto por ID
+2. Instalar las dependencias:
 
-npm run start GET products/15
-
-
-Crear un nuevo producto (Simulado)
-
-npm run start POST products "Título del producto" 100 "categoría"
+npm install
 
 
-Eliminar un producto
+3. Configurar las Variables de Entorno (.env):
+Por razones de seguridad, las credenciales no están incluidas en el repositorio. Debes crear un archivo llamado .env en la raíz del proyecto y agregar tus propias variables siguiendo este formato:
 
-npm run start DELETE products/7
+PORT=3000
+JWT_SECRET=Tu_Secreto_JWT_Super_Seguro
+FIREBASE_API_KEY=tu_api_key
+FIREBASE_AUTH_DOMAIN=tu_auth_domain
+FIREBASE_PROJECT_ID=tu_project_id
+FIREBASE_STORAGE_BUCKET=tu_storage_bucket
+FIREBASE_MESSAGING_SENDER_ID=tu_sender_id
+FIREBASE_APP_ID=tu_app_id
 
 
-📝 Notas
+4. Iniciar el servidor:
 
-La API de FakeStore es de solo lectura para cambios permanentes, por lo que las operaciones POST y DELETE son simulaciones exitosas retornadas por el servidor.
+npm run start
+
+
+El servidor estará corriendo en http://localhost:3000.
+
+📡 Endpoints de la API
+
+La API cuenta con rutas públicas (lectura) y rutas protegidas (escritura). Las rutas protegidas requieren enviar un token JWT en el Header de la petición (Authorization: Bearer <token>).
+
+Autenticación
+
+* POST /auth/login: Iniciar sesión y obtener el token JWT (Devuelve estado 200).
+
+Productos (Públicas)
+
+* GET /api/products: Obtener todos los productos (Devuelve estado 200).
+
+* GET /api/products/:id: Obtener un producto por su ID (Devuelve estado 200 o 404).
+
+Productos (Protegidas con JWT)
+
+* POST /api/products/create: Crear un nuevo producto (Devuelve estado 201).
+
+* PUT /api/products/:id: Actualizar un producto existente (Devuelve estado 200).
+
+* DELETE /api/products/:id: Eliminar un producto (Devuelve estado 200).
+
+🧪 Pruebas (Testing)
+
+Se recomienda utilizar herramientas como Postman, Insomnia o Thunder Client (VS Code) para interactuar con la API.
+
+1. Primero, realiza una petición POST a /auth/login con el email y contraseña de administrador para obtener tu token.
+
+2. Luego, utiliza ese token en la pestaña Headers (como Authorization: Bearer <tu_token>) para probar las rutas de creación, edición y eliminación de productos.
+
+Desarrollado por Tiago Lattanzi - 2026
